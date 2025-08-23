@@ -8,28 +8,12 @@ import {
   TableRow,
 } from "@tremor/react";
 
-const data = [
-  {
-    id: 1,
-    name: "Miguel Ángel",
-    email: "Miguel@gmail.com",
-    github: "MirotiDV",
-  },
-  {
-    id: 2,
-    name: "Alex Merc",
-    email: "Alex@gmail.com",
-    github: "AlexMR",
-  },
-  {
-    id: 3,
-    name: "Logan Moth",
-    email: "Logan@gmail.com",
-    github: "LoganMT",
-  },
-];
+import { useSelector } from "react-redux";
 
 export function ListOfUsers() {
+
+  const users = useSelector((state) => state.users);
+
   return (
     <Card>
       <h3>Lista de usuarios</h3>
@@ -43,7 +27,7 @@ export function ListOfUsers() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((item) => (
+          {users.map((item) => (
             <TableRow key={item.id}>
               <TableCell>{item.id}</TableCell>
               <TableCell style={{ display: "flex", alignItems: "center" }}>
