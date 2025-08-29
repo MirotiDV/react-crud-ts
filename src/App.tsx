@@ -1,12 +1,15 @@
 import './App.css'
-import './components/ListOfUsers'
+import { CreateNewUser } from './components/CreateNewUser';
 import { ListOfUsers } from './components/ListOfUsers';
 
 function App() {
 
 
   return (
-    <ListOfUsers></ListOfUsers>
+    <>
+      <ListOfUsers />
+      <CreateNewUser />
+    </>
   );
 }
 
