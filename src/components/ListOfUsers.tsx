@@ -3,7 +3,7 @@ export function ListOfUsers() {
 
   return (
     <>
-      <h1>List of users</h1>
+      <h1 className="table-title">List of users</h1>
 
       <table className="table-container">
         <thead className="table-header">
@@ -105,7 +105,7 @@ export function ListOfUsers() {
         <tfoot>
           <tr>
             <td colSpan={4} style={{ textAlign: "center" }}>
-              <button type="button">
+              <button type="button" className="btnSvg" id="addUserBtn">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
