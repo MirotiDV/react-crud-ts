@@ -2,15 +2,29 @@ import { useUserStore } from "../store/userStore.ts";
 
 export function ListOfUsers() {
 
-  const {deleteUser} = useUserStore();
-  const users = useUserStore((state) => state.users ? state.DEFAULT_STATE : state.users);
-  // Revisar error de recarga al añadir un usuario
+  const {deleteUser, toggleVisibility, isVisible} = useUserStore();
+  const users = useUserStore((state) => state.users);
+  // Revisar error de recarga al añadir un usuario y linea de arriba
+
+ 
+  const toggleAddUserForm = () => {
+    if(!isVisible) {
+      toggleVisibility()
+
+      setTimeout(() => {
+        window.scrollTo(0, document.body.scrollHeight);
+    }, 10);
+
+    }
+  }
+
+
+    
 
   return (
     <>
-      <h1 className="table-title">List of users</h1>
-
-      <table className="table-container">
+  <section className="table-container">
+      <table>
         <thead className="table-header">
           <tr>
             <th>Usuarios</th>
@@ -74,7 +88,7 @@ export function ListOfUsers() {
         <tfoot>
           <tr>
             <td colSpan={4} style={{ textAlign: "center" }}>
-              <button type="button" className="btnSvg" id="addUserBtn">
+              <button type="button" className="btnSvg" id="addUserBtn" onClick={() => toggleAddUserForm()}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -94,6 +108,7 @@ export function ListOfUsers() {
           </tr>
         </tfoot>
       </table>
+    </section>
     </>
   );
 }

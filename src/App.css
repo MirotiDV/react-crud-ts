@@ -1,27 +1,35 @@
+* {
+  box-sizing: border-box;
+}
+
+
 html {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
+
 
 .table-title {
   text-align: center;
   font-family: sans-serif;
   letter-spacing: 1px;
-  margin-top: 2rem;
-  padding-bottom: 2rem;
+  padding-bottom: 0.5rem;
 }
 
 .table-container {
 
-
   border: 2px solid rgb(140 140 140);
+  width: auto;
+  overflow: auto;
   border-radius: 20px;
   font-family: sans-serif;
   font-size: 0.8rem;
   letter-spacing: 1px;
-  width: auto;
-  padding: 10px;
-  transform: scale(1.25);
+  padding: 1rem 0 0 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  table-layout:fixed;
 
   thead {
 
@@ -46,12 +54,6 @@ html {
     cursor: pointer;
     width: 2rem;
     transition: transform 0.5s ease;
-
-    &:focus {
-      outline: none;
-      color: #09f;
-      transform: scale(1.2);
-    }
 
 
     &:hover {
@@ -86,7 +88,8 @@ html {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
   padding-bottom: 1rem;
 
   h1 {
