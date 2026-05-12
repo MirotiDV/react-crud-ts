@@ -5,6 +5,7 @@ interface User {
     id: string;
     username: string;
     email: string;
+    isEditableUser: boolean;
 }
 
 interface userStore {
@@ -13,27 +14,32 @@ interface userStore {
     addUser: (user: User) => void;
     updateUser: (userId: string, updatedUser: User) => void;
     deleteUser: (userId: string) => void;
-    isVisible: boolean;
     toggleVisibility: () => void;
+    toggleEditability: (userId: string) => void;
+    isVisible: boolean;
     
+
 }
 
 const DEFAULT_STATE = [
 
         {
-            id: "1",
+            id: crypto.randomUUID(),
             username: "Miguel Ángel",
             email: "Miguel@gmail.com",
+            isEditableUser: false,
         },
         {
-            id: "2",
+            id: crypto.randomUUID(),
             username: "Alex Merc",
             email: "Alex@gmail.com",
+            isEditableUser: false,
         },
         {
-            id: "3",
+            id: crypto.randomUUID(),
             username: "Logan Moth",
             email: "Logan@gmail.com",
+            isEditableUser: false,
         }
     ];
 
@@ -44,7 +50,7 @@ const initialState: User[] = (() => {
 
 
 //revisar el persist, funciona pero guarda el nombre como undefined 
-export const useUserStore = create<userStore>(persist((set) => ({
+export const useUserStore = create<userStore>(persist((set, get) => ({
 
 
     users: initialState,
@@ -57,7 +63,6 @@ export const useUserStore = create<userStore>(persist((set) => ({
 
     //ACTIONS
 
-    
 
     addUser: (user) => {set((state) => ({
         users: state.users.includes(user) 
@@ -75,6 +80,10 @@ export const useUserStore = create<userStore>(persist((set) => ({
     }))},
 
     toggleVisibility: () => set((state) => ({ isVisible: !state.isVisible})),
+
+    toggleEditability: (userId) => set((state) => ({
+        users: state.users.map((user) => user.id === userId ? { ...user, isEditableUser: !user.isEditableUser } : user)
+    })),
 
 
 
