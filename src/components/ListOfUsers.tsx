@@ -1,5 +1,6 @@
 import { useUserStore } from "../store/userStore.ts";
 import { svgIcons } from "../assets/svgIcons.tsx";
+import { toast } from "sonner";
 
 export function ListOfUsers() {
   const {
@@ -23,6 +24,15 @@ export function ListOfUsers() {
     }
   };
 
+  const handleDeleteUser = ({ userId }: { userId: string }) => {
+    try{
+      deleteUser(userId);
+      toast.success('User deleted successfully')
+    }catch{
+      toast.error('Failed to delete user')
+    }
+  }
+
   // TODO aplicar restriccion a la edicion del email para que mantenga el formato correcto, revisar que el nombre no quede vacío o con solo espacios en blanco
   const editUserButton = ({ userId }: { userId: string }) => {
     const userToEdit = users.find((user) => user.id === userId);
@@ -34,11 +44,11 @@ export function ListOfUsers() {
       if (!userToEdit?.isEditableUser) {
         toggleEditability(userId);
       } else {
-        console.log("Entra", userToEdit?.isEditableUser);
         userToEdit.username = document.getElementById(`username-${userId}`)?.textContent || "";
         userToEdit.email = document.getElementById(`email-${userId}`)?.textContent || "";
         updateUser(userId, userToEdit);
         toggleEditability(userId);
+        toast.success('User data updated successfully')
       }
     };
     return (
@@ -58,7 +68,7 @@ export function ListOfUsers() {
         <table>
           <thead className="table-header">
             <tr>
-              <th>Usuarios</th>
+              <th>Users</th>
             </tr>
             <tr>
               <td>ID</td>
@@ -84,7 +94,7 @@ export function ListOfUsers() {
                     <button
                       type="button"
                       className="btnSvg"
-                      onClick={() => deleteUser(item.id)}
+                      onClick={() => handleDeleteUser({userId: item.id})}
                     >
                       {deleteSvg()}
                     </button>

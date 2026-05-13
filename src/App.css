@@ -43,7 +43,15 @@ html {
   tbody {
 
     td {
+
       padding-right: 1rem;
+      
+      &:focus {
+        outline: #09f;
+        border-radius: 10px;
+        border-color: #09f;
+        box-shadow: #09f 0px 0px 10px;
+      }
     }
 
   }
@@ -134,5 +142,15 @@ html {
       background-color: grey;
     }
 
+  }
+}
+
+.form-button-container {
+  button{
+    margin-right: 1rem;
+
+    &:last-child {
+      background-color: rgb(189, 12, 12);
+    }
   }
 }

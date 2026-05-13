@@ -1,5 +1,6 @@
 import {create} from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
+import { toast } from 'sonner';
 
 interface User {
     id: string;
@@ -58,9 +59,6 @@ export const useUserStore = create<userStore>(persist((set, get) => ({
     initialState: [],
     isVisible: false,
     
-
-
-
     //ACTIONS
 
 
